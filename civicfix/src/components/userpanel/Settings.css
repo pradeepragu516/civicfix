@@ -1,0 +1,57 @@
+.settings-container {
+    max-width: 1200px;
+    margin: auto;
+    padding: 20px;
+    background: white;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    text-align: center;
+  }
+  
+  h2 {
+    margin-bottom: 15px;
+    color: #333;
+  }
+  
+  .setting-option {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    border-bottom: 1px solid #ddd;
+  }
+  
+  .setting-option label {
+    font-weight: bold;
+  }
+  
+  .setting-option button {
+    padding: 8px 12px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    background: #3498db;
+    color: white;
+  }
+  
+  .setting-option button.active {
+    background: #2ecc71;
+  }
+  
+  .setting-option button:hover {
+    opacity: 0.8;
+  }
+  
+  .setting-option select {
+    padding: 5px;
+    border-radius: 5px;
+  }
+  
+  .delete-account {
+    margin-top: 20px;
+  }
+  
+  .delete-account .danger {
+    background: #e74c3c;
+  }
+  

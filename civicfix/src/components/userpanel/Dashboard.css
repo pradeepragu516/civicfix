@@ -1,0 +1,86 @@
+/* 🌟 Dashboard Container */
+.dashboard-container {
+    display: flex;
+    height: 100vh;
+    width: 100%;
+    font-family: "Poppins", sans-serif;
+  }
+  
+
+/* 🌟 Sidebar Styling */
+.sidebar {
+    width: 250px;
+    height: 100vh;
+    background: #1e1e2d;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    padding-top: 20px;
+    position: fixed;
+    left: 0;
+    top: 0;
+    overflow-y: auto;
+  }
+  
+  /* 🏠 Logo */
+  .sidebar .logo {
+    text-align: center;
+    font-size: 1.8rem;
+    font-weight: bold;
+    margin-bottom: 20px;
+    color: orangered;
+  }
+  
+  /* 📜 Sidebar Navigation */
+  .sidebar ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+  
+  /* 🔗 Sidebar Links */
+  .sidebar ul li {
+    padding: 12px 20px;
+  }
+  
+  .sidebar ul li a {
+    text-decoration: none;
+    color: white;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 1.1rem;
+    transition: 0.3s;
+  }
+  
+  .sidebar ul li a:hover,
+  .sidebar ul li a.active {
+    background: #ff5733;
+    border-radius: 6px;
+    padding: 12px 20px;
+  }
+  
+  /* 🚀 Keep Sidebar Links at the Top */
+  .sidebar ul {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start; /* Keep items at the top */
+  }
+  
+  /* ❌ Logout Button */
+  .sidebar .logout {
+    margin-top: auto; /* Push logout to the bottom */
+  }
+  
+  
+  /* 📜 Main Content */
+  .dashboard-content {
+    margin-left: 250px;
+    padding: 20px;
+    width: calc(100% - 250px);
+    background: #f4f4f4;
+    height: 100vh;
+    overflow-y: auto;
+  }
+  

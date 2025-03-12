@@ -1,0 +1,222 @@
+/* Center the report container */
+/* .report-container {
+  text-align: center;
+  max-width: 650px;
+  margin: auto;
+  padding: 25px;
+  background: white;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+  border-radius: 12px;
+  overflow: hidden;
+} */
+
+/* Title and description styling */
+h2 {
+  margin-bottom: 10px;
+  font-size: 22px;
+}
+
+p {
+  color: #444;
+  font-size: 15px;
+}
+
+/* Form Styling */
+.report-form {
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+}
+
+label {
+  margin-top: 12px;
+  font-weight: 600;
+  font-size: 15px;
+  color: #333;
+}
+
+/* Input fields */
+input,
+textarea,
+select {
+  width: 100%;
+  padding: 10px;
+  margin-top: 5px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-size: 14px;
+  transition: all 0.2s ease-in-out;
+}
+
+input:focus,
+textarea:focus,
+select:focus {
+  outline: none;
+  border-color: #3498db;
+  box-shadow: 0 0 5px rgba(52, 152, 219, 0.3);
+}
+
+/* Textarea height */
+textarea {
+  resize: vertical;
+  height: 110px;
+}
+
+/* Priority selection buttons */
+.priority-options {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 10px;
+}
+
+.priority-btn {
+  flex: 1;
+  margin: 5px;
+  padding: 10px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: bold;
+  text-align: center;
+  transition: 0.3s;
+}
+
+.low {
+  background: #b5e7a0;
+  color: #2d572c;
+}
+
+.medium {
+  background: #ffcc00;
+  color: #825000;
+}
+
+.high {
+  background: #ff6666;
+  color: #660000;
+}
+
+.priority-btn:hover {
+  opacity: 0.85;
+}
+
+.priority-btn.active {
+  transform: scale(1.05);
+  border: 2px solid #222;
+}
+
+/* Anonymous submission checkbox */
+.checkbox-container {
+  display: flex;
+  align-items: center;
+  margin-top: 12px;
+  cursor: pointer;
+}
+
+.checkbox-container input {
+  width: 18px;
+  height: 18px;
+  margin-right: 12px;
+}
+
+.an_box {
+  font-size: 18px;
+  margin-right: 8px;
+  color: #555;
+}
+
+.sub_an {
+  font-size: 14px;
+  font-weight: bold;
+  color: #333;
+}
+
+/* Location button */
+.location-btn {
+  background: #3498db;
+  color: white;
+  padding: 10px 15px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  margin-top: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  transition: background 0.3s;
+}
+
+.location-btn:hover {
+  background: #217dbb;
+}
+
+.location-btn svg {
+  margin-right: 6px;
+}
+
+/* Submit button */
+.submit-btn {
+  background: #2ecc71;
+  color: white;
+  padding: 12px;
+  font-size: 16px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  margin-top: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  transition: background 0.3s;
+}
+
+.submit-btn:hover {
+  background: #25a65a;
+}
+
+.submit-btn svg {
+  margin-right: 6px;
+}
+
+/* Duplicate warning */
+.duplicate-warning {
+  color: red;
+  font-size: 14px;
+  margin-top: 5px;
+  font-weight: bold;
+}
+
+/* Issue description height fix */
+.iss_des {
+  height: 50px;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .report-container {
+    width: 90%;
+    padding: 20px;
+  }
+
+  .priority-options {
+    flex-direction: column;
+  }
+
+  .priority-btn {
+    width: 100%;
+  }
+
+  .checkbox-container {
+    flex-direction: row;
+  }
+
+  .location-btn {
+    width: 100%;
+  }
+
+  .submit-btn {
+    width: 100%;
+  }
+}
