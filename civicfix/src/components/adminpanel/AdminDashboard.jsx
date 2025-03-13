@@ -1,42 +1,53 @@
-import React from "react";
+import React, { useState } from "react";
 import { Outlet, Link } from "react-router-dom";
 import { 
   FaHome, FaClipboardList, FaUsers, FaMoneyBill, 
-  FaChartBar, FaCog 
+  FaChartBar, FaCog, FaBars 
 } from "react-icons/fa"; 
 
 import "./AdminDashboard.css";
 
 const AdminDashboard = () => {
+  const [sidebarOpen, setSidebarOpen] = useState(false);
+
+  const toggleSidebar = () => {
+    setSidebarOpen(!sidebarOpen);
+  };
+
   return (
-    <div className="admin-dashboard-container">
+    <div className="dashboard-container">
+      {/* Sidebar Toggle Button for Mobile */}
+      <button className="sidebar-toggle" onClick={toggleSidebar}>
+        <FaBars />
+      </button>
+
       {/* Sidebar */}
-      <nav className="admin-sidebar">
-        <h2 className="admin-logo">Admin Panel</h2>
+      <nav className={`sidebar ${sidebarOpen ? "open" : ""}`}>
+        <h2 className="logo">Admin Panel</h2>
         <ul>
           <li>
-            <Link to="/admin"><FaHome /> Home</Link>
+            <Link to="/admin" onClick={toggleSidebar}><FaHome /> Home</Link>
           </li>
           <li>
-            <Link to="/admin/issues"><FaClipboardList /> Manage Issues</Link>
+            <Link to="/admin/issues" onClick={toggleSidebar}><FaClipboardList /> Manage Issues</Link>
           </li>
           <li>
-            <Link to="/admin/volunteers"><FaUsers /> Volunteer Management</Link>
+            <Link to="/admin/volunteers" onClick={toggleSidebar}><FaUsers /> Volunteer Management</Link>
           </li>
           <li>
-            <Link to="/admin/finance"><FaMoneyBill /> Financial Management</Link>
+            <Link to="/admin/finance" onClick={toggleSidebar}><FaMoneyBill /> Financial Management</Link>
           </li>
           <li>
-            <Link to="/admin/reports"><FaChartBar /> Analytics & Reports</Link>
+            <Link to="/admin/reports" onClick={toggleSidebar}><FaChartBar /> Analytics & Reports</Link>
           </li>
           <li>
-            <Link to="/admin/settings"><FaCog /> Settings</Link>
+            <Link to="/admin/settings" onClick={toggleSidebar}><FaCog /> Settings</Link>
           </li>
         </ul>
       </nav>
 
       {/* Main Content */}
-      <div className="admin-dashboard-content">
+      <div className="dashboard-content">
         <Outlet />
       </div>
     </div>
