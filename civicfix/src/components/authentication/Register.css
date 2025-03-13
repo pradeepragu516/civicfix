@@ -40,12 +40,14 @@
 .register-box h2 {
     font-size: 2rem;
     margin-bottom: 5px;
+    color: orangered
 }
 
 .register-box p {
     font-size: 1rem;
     margin-bottom: 20px;
     opacity: 0.8;
+    color: white;
 }
 
 /* 📩 Input Fields */

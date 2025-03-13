@@ -11,6 +11,8 @@ import VolunteerTasks from "./components/userpanel/VolunteerTasks";
 import CommunityDiscussion from "./components/userpanel/CommunityDiscussion";
 import Notifications from "./components/userpanel/Notifications";
 import Settings from "./components/userpanel/Settings";
+import AdminLogin from "./components/authentication/AdminLogin";
+import AdminDashboard from "./components/adminpanel/AdminDashboard";
 
 const App = () => {
   return (
@@ -20,6 +22,7 @@ const App = () => {
         <Route path="/" element={<Home />} />
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<Register />} />
+        <Route path="/AdminLogin" element={<AdminLogin />} />
 
         {/* Dashboard Routes */}
         <Route path="/dashboard/*" element={<Dashboard />}>
@@ -31,6 +34,8 @@ const App = () => {
           <Route path="discussion" element={<CommunityDiscussion />} />
           <Route path="notifications" element={<Notifications />} />
           <Route path="settings" element={<Settings />} />
+        </Route>
+        <Route path="/AdminDashboard/*" element={<AdminDashboard />}>
         </Route>
       </Routes>
     </Router>
