@@ -1,12 +1,43 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 import "./Register.css";
-import scenery from "../../assets/scenery.jpg"; // Importing the background image
+import scenery from "../../assets/scenery.jpg"; // Correct import
 
 const Register = () => {
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
+  const navigate = useNavigate();
+
+  const handleRegister = async () => {
+    if (password !== confirmPassword) {
+      alert("Passwords do not match!");
+      return;
+    }
+
+    try {
+      const response = await fetch("http://localhost:5000/api/register", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ name, email, password }),
+      });
+
+      const data = await response.json();
+      if (response.ok) {
+        alert("Registration successful! You can now log in.");
+        navigate("/login"); // Redirect to login page
+      } else {
+        alert(data.error);
+      }
+    } catch (error) {
+      console.error("Registration error:", error);
+      alert("Something went wrong. Please try again.");
+    }
+  };
 
   return (
     <div className="register-container">
@@ -24,13 +55,25 @@ const Register = () => {
         {/* 📝 Name Field */}
         <div className="input-group">
           <label>Full Name</label>
-          <input type="text" placeholder="Enter your full name" required />
+          <input
+            type="text"
+            placeholder="Enter your full name"
+            value={name}
+            onChange={(e) => setName(e.target.value)}
+            required
+          />
         </div>
 
         {/* 📩 Email Field */}
         <div className="input-group">
           <label>Email</label>
-          <input type="email" placeholder="Enter your email" required />
+          <input
+            type="email"
+            placeholder="Enter your email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            required
+          />
         </div>
 
         {/* 🔒 Password Field */}
@@ -40,6 +83,8 @@ const Register = () => {
             <input
               type={showPassword ? "text" : "password"}
               placeholder="Enter your password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
               required
             />
             <span onClick={() => setShowPassword(!showPassword)}>
@@ -55,6 +100,8 @@ const Register = () => {
             <input
               type={showConfirmPassword ? "text" : "password"}
               placeholder="Confirm your password"
+              value={confirmPassword}
+              onChange={(e) => setConfirmPassword(e.target.value)}
               required
             />
             <span onClick={() => setShowConfirmPassword(!showConfirmPassword)}>
@@ -64,7 +111,7 @@ const Register = () => {
         </div>
 
         {/* 🎯 Register Button */}
-        <button className="btn-register">Sign Up</button>
+        <button className="btn-register" onClick={handleRegister}>Sign Up</button>
 
         {/* 📌 Login Link */}
         <div className="login-link">

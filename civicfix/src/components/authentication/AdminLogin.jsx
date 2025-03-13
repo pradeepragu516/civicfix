@@ -1,29 +1,64 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
-import { FaEye, FaEyeSlash, FaGoogle, FaFacebook } from "react-icons/fa";
+import { useNavigate } from "react-router-dom"; // Import navigation
+import { FaEye, FaEyeSlash } from "react-icons/fa";
 import "./AdminLogin.css";
-import scenery from "../../assets/scenery.jpg"; // Corrected import path
+import scenery from "../../assets/scenery.jpg"; // Ensure correct image path
 
 const AdminLogin = () => {
+  const [email, setEmail] = useState(""); // Store email input
+  const [password, setPassword] = useState(""); // Store password input
   const [showPassword, setShowPassword] = useState(false);
+  const [error, setError] = useState(""); // Store error message
+  const navigate = useNavigate(); // For redirection
+
+  // 🔥 Handle Admin Login
+  const handleLogin = async (e) => {
+    e.preventDefault(); // Prevent default form submission
+
+    try {
+      const response = await fetch("http://localhost:5000/api/admin/login", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email, password }),
+      });
+
+      const data = await response.json();
+
+      if (!response.ok) {
+        setError(data.error || "Invalid credentials"); // Show error message
+        return;
+      }
+
+      localStorage.setItem("adminToken", data.token); // Store token
+      navigate("/AdminDashboard"); // Navigate to Admin Dashboard
+    } catch (err) {
+      setError("Something went wrong! Try again.");
+    }
+  };
 
   return (
     <div className="login-container">
-      {/* 🌆 Background Overlay with imported image */}
-      <div
-        className="background-overlay"
-        style={{ backgroundImage: `url(${scenery})` }}
-      ></div>
+      {/* 🌆 Background Overlay */}
+      <div className="background-overlay" style={{ backgroundImage: `url(${scenery})` }}></div>
 
       {/* 📦 Login Box */}
       <div className="login-box">
         <h2 className="let">Admin Login</h2>
         <p>Login to continue</p>
 
+        {/* 🚨 Show Error Message */}
+        {error && <p className="error-message">{error}</p>}
+
         {/* 📩 Email Field */}
         <div className="input-group">
           <label>Email</label>
-          <input type="email" placeholder="Enter your email" required />
+          <input
+            type="email"
+            placeholder="Enter your email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            required
+          />
         </div>
 
         {/* 🔒 Password Field */}
@@ -33,6 +68,8 @@ const AdminLogin = () => {
             <input
               type={showPassword ? "text" : "password"}
               placeholder="Enter your password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
               required
             />
             <span onClick={() => setShowPassword(!showPassword)}>
@@ -41,18 +78,10 @@ const AdminLogin = () => {
           </div>
         </div>
 
-        {/* 🎯 Login & Guest Buttons */}
-        <button className="btn-login">Login</button>
-        {/* <button className="btn-guest">Continue as Guest</button> */}
-
-      
-
-        {/* 📌 Register Link */}
-        {/* <div className="register-link">
-          <p>
-            Don't have an account? <Link to="/signup">Sign Up</Link>
-          </p>
-        </div> */}
+        {/* 🎯 Login Button */}
+        <button className="btn-login" onClick={handleLogin}>
+          Login
+        </button>
       </div>
     </div>
   );

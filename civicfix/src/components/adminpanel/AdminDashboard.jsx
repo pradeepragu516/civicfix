@@ -37,9 +37,9 @@ const AdminDashboard = () => {
           <li>
             <Link to="/admin/finance" onClick={toggleSidebar}><FaMoneyBill /> Financial Management</Link>
           </li>
-          <li>
+          {/* <li>
             <Link to="/admin/reports" onClick={toggleSidebar}><FaChartBar /> Analytics & Reports</Link>
-          </li>
+          </li> */}
           <li>
             <Link to="/admin/settings" onClick={toggleSidebar}><FaCog /> Settings</Link>
           </li>
